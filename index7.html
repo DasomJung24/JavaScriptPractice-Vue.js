@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue Template - Directives</title>
+    </head>
+    <body>
+        <div id="app">
+            <a v-if='flag'>두잇 Vue.js</a>
+            <ul>
+                <li v-for='system in systems'>{{ system }}</li>
+            </ul>
+            <p v-show='flag'>두잇 Vue.js</p>
+            <h5 v-bind:id='uid'>뷰 입문서</h5>
+            <button v-on:click='popupAlert'>경고 창 버튼</button>
+            <button v-on:click='clickBtn'>클릭</button>
+            <p>{{ message }}</p>
+            <button v-on:click='reverseMsg'>문자열 역순</button>
+            <input v-model='antherMsg'>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    flag: true,
+                    systems: ['android', 'ios', 'window'],
+                    uid: 10,
+                    message: 'Hello Vue.js!',
+                    antherMsg: 'Hello Hello Hello'
+                },
+                watch: {
+                    anotherMsg: function(data) {
+                        console.log("anotherMsg의 값이 바뀝니다 : ", data);
+                    }
+                },
+                methods: {
+                    popupAlert: function() {
+                        return alert('경고 창 표시');
+                    },
+                    clickBtn: function(event) {
+                        console.log(event);
+                    },
+                    reverseMsg: function() {
+                        this.message = this.message.split('').reverse().join('');
+                        return this.message;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
